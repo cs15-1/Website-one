@@ -1,0 +1,156 @@
+/* This is a CSS file where we style how the webpage looks */
+
+/* Reset default settings browsers add, so we start fresh */
+* {
+    margin: 0; /* Removes extra space around things */
+    padding: 0; /* Removes extra padding inside things */
+    box-sizing: border-box; /* Makes sure sizes include borders and padding */
+}
+
+/* Style the whole page (the "body" part of HTML) */
+body {
+    font-family: Arial, sans-serif; /* Clean, common font */
+    line-height: 1.6; /* Spaces lines for readability */
+    min-height: 100vh; /* Fills the whole screen height */
+    background-image: url('blackblade.jpg'); /* Square background image (replace with your own) */
+    background-size: cover; /* Stretches image to cover screen */
+    background-position: top left; /* Starts at top-left, crops bottom or right */
+    background-repeat: no-repeat; /* No tiling of the image */
+}
+
+/* Style the top part of the page (the "header") */
+header {
+    background: linear-gradient(135deg, #fae04c, #98c8f8); /* Blue gradient from top-left to bottom-right */
+    color: #180202; /* White text */
+    padding: 1rem; /* Space inside the header */
+    text-align: center; /* Centers everything inside */
+    position: relative; /* Helps position the border */
+    overflow: visible; /* Ensures the pseudo-element isn’t clipped */
+    margin: 2.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 0;
+
+    clip-path: polygon(
+        25px 0%, calc(100% - 25px) 0%, 100% 25px, 100% calc(100% - 25px),
+        calc(100% - 25px) 100%, 25px 100%, 0% calc(100% - 25px), 0% 25px
+    );
+}
+
+/* Create an octagonal border around the header */
+header::before {
+    content: ''; /* Makes an invisible layer for the border */
+    position: absolute; /* Sticks it to the header */
+    top: 5px; /* Moves it 10px outside the top (increased from -5px) */
+    left: 5px; /* Moves it 10px outside the left */
+    right: 5px; /* Extends 10px beyond the right */
+    bottom: 5px; /* Extends 10px beyond the bottom */
+    background: #4e4e4e; /* White border color */
+    /* Larger octagon shape for the border (30px cuts) */
+    clip-path: polygon(
+        25px 0%,          /* Top-left: cut 30px from left */
+        calc(100% - 25px) 0%, /* Top-right: cut 30px from right */
+        100% 25px,        /* Right-top: cut 30px from top */
+        100% calc(100% - 25px), /* Right-bottom: cut 30px from bottom */
+        calc(100% - 25px) 100%, /* Bottom-right: cut 30px from right */
+        25px 100%,        /* Bottom-left: cut 30px from left */
+        0% calc(100% - 25px), /* Left-bottom: cut 30px from bottom */
+        0% 25px           /* Left-top: cut 30px from top */
+    );
+    z-index: -1; /* Places it behind the header */
+}
+
+/* Style the big heading inside the header */
+header h1 {
+    margin-bottom: 0.5rem; /* Space below the heading */
+    /* Apply octagonal shape to the heading area */
+}
+
+/* Remove bullet points from the navigation list */
+nav ul {
+    list-style: none; /* No dots or numbers */
+}
+
+/* Make navigation links line up side by side */
+nav ul li {
+    display: inline; /* Puts list items in a row */
+    margin: 0 1rem; /* Space between links */
+    color: #f1e100; 
+}
+
+/* Style the links in the navigation */
+nav a {
+    color: #000000; /* White text */
+    text-decoration: none; /* No underlines */
+}
+
+/* Style the main content area */
+main {
+    padding: 2rem; /* Space around the boxes */
+}
+
+/* Style the group of boxes */
+.boxes {
+    display: flex; /* Lines up boxes in a row */
+    justify-content: space-around; /* Spreads boxes evenly */
+    flex-wrap: wrap; /* Moves boxes to new line if screen is small */
+}
+
+/* Style each individual box, now with octagonal shape and border */
+.box {
+    width: 300px; /* Box width */
+    height: 300px; /* Box height */
+    background: linear-gradient(135deg, #f4c430, #e0a814); /* Yellow-orange gradient for boxes */
+    margin: 1rem; /* Space around each box */
+    margin-bottom: 4rem;
+    margin-top: 4rem;
+    display: flex; /* Centers text inside */
+    align-items: center; /* Vertically centers text */
+    justify-content: center; /* Horizontally centers text */
+    font-size: 1.5rem; /* Bigger text */
+    /* Make the box octagonal */
+    clip-path: polygon(
+        25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%
+    );
+    position: relative; /* Helps position the border */
+}
+
+/* Fake octagonal border for boxes using a pseudo-element */
+.box::before {
+    content: ''; /* Creates an invisible element for the border */
+    position: absolute; /* Sticks it to the box */
+    top: 5px; /* Moves it slightly outside the box */
+    left: 5px; /* Moves it slightly outside the box */
+    right: 5px; /* Extends it beyond the box */
+    bottom: 5px; /* Extends it beyond the box */
+    background: #333; /* Dark gray border color (you can change this) */
+    clip-path: polygon(
+        25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%
+    ); /* Same octagon shape */
+    z-index: -1; /* Puts it behind the box */
+}
+
+/* Style the bottom part of the page (the "footer") */
+footer {
+    background: rgba(51, 51, 51, 0.8); /* Dark gray with transparency */
+    color: #fff; /* White text */
+    text-align: center; /* Centers text */
+    padding: 1rem; /* Space inside */
+    position: fixed; /* Sticks footer to bottom */
+    bottom: 0; /* Aligns to bottom */
+    width: 100%; /* Full width */
+}
+
+/* Change layout for small screens (like phones) */
+@media (max-width: 600px) {
+    /* When screen is 600 pixels wide or less */
+    .boxes {
+        flex-direction: column; /* Stacks boxes vertically */
+        align-items: center; /* Centers them horizontally */
+    }
+    
+    .box {
+        width: 80%; /* Wider boxes for small screens */
+        margin: 1rem 0; /* Space above and below */
+        /* Octagon shape and border stay the same */
+    }
+}
